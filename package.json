@@ -1,0 +1,17 @@
+{
+  "name": "anchorcheck",
+  "version": "0.0.1",
+  "description": "Node module to check whether an anchor contains block level elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Kopczewski",
+  "license": "MIT",
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "colors": "^1.1.2",
+    "fs-cheerio": "^2.0.1",
+    "glob": "^7.1.1"
+  }
+}
