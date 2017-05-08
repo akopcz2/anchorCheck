@@ -10,6 +10,7 @@ var self = module.exports = {
         let options = {
             "ignore": "**/node_modules/"
         }
+        let failBuild = false;
         let buildPath = appRoot;
         buildPath = buildPath + '/';
         console.log(buildPath);
@@ -32,7 +33,8 @@ var self = module.exports = {
                 let nodeChildren = element.children;
                     nodeChildren.forEach(function(node){
                         let nodeName = node.name;
-                        if (nodeName !== 'span') {
+                        let nodeType = node.type;
+                        if ( (nodeName !== 'span' && nodeName !== 'br' && nodeName !=='img' && nodeName !=='strong' && nodeName !=='a' && nodeName !=='i') && nodeType === 'tag') {
                             numOfChanges += 1;
                             callback(nodeName, filePath);
                         }
@@ -53,9 +55,14 @@ var self = module.exports = {
                                 let anchorChildLength = node.children.length;
                                 if(anchorChildLength > 0){
                                     getNodeChildren(node, function(blockLevelNode, filePath){
+                                        let nodeContents = $(node).html();
                                         console.log(colors.yellow(blockLevelNode) + ' is a block level element. Please convert to a ' + colors.yellow('span'));
+                                        console.log('Contents of the node  ' + colors.yellow(nodeContents) + '\n');
                                         console.log('build failed at ' + colors.red(filePath));
                                         buildStatus = colors.red('BUILD FAILED');
+                                        failBuild = true;
+                                        //This will halt all js execution until error is fixed
+                                        process.exit();
                                     });
 
                                 }
