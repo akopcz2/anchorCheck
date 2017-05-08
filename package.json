@@ -1,6 +1,6 @@
 {
   "name": "anchorcheck",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node module to check whether an anchor contains block level elements",
   "main": "index.js",
   "scripts": {
